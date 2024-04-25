@@ -1,7 +1,16 @@
 from rest_framework import serializers
-from API.models import Company
+from API.models import Company,Employee
 
-class CompanySerilizers(serializers.HyperlinkedModelSerializer):
+class CompanySerilizers(serializers.ModelSerializer):
     class Meta:
+        company_id = serializers.ReadOnlyField()
         model = Company
-        field = "__all__"
+        fields = "__all__"
+
+
+class EmployeeSerializers(serializers.HyperlinkedModelSerializer):
+    ide=serializers.ReadOnlyField()
+
+    class Meta:
+        model=Employee
+        fields = "__all__"
